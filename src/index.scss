@@ -1,0 +1,97 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  width: 500px;
+  height: calc(100vh - 40px);
+  border-radius: 20px;
+  outline: none;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.notActive {
+  display: none;
+}
+.active {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  outline: 0;
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: #000;
+    height: 2px;
+    width: 23px;
+    transform: rotate(45deg);
+    top: 10px;
+    left: 0;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: #000;
+    height: 2px;
+    width: 23px;
+    transform: rotate(-45deg);
+    top: 10px;
+    left: 0;
+  }
+}
+
+.residents {
+  &__name {
+    padding-left: 10px;
+    cursor: pointer;
+    &:hover {
+      color: #b69c48;
+    }
+  }
+}
+
