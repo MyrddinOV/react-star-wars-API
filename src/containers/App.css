@@ -54,18 +54,22 @@
   margin: 20px 15px;
   padding: 5px;
 }
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .planet-container {
   cursor: pointer;
   margin: 0 auto;
 
-  width: 300px;
+  width: 200px;
 }
 
 .planet-img {
   margin: 10px;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
 }
 .bg-black {
   background-color: #000000;

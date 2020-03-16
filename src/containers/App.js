@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './App.css';
 
@@ -14,19 +14,22 @@ import { getPersons } from '../actions/PersonActions';
 
 
 function App(props) {
-
+  const [planetPage, setPlanetPage] = useState('https://swapi.co/api/planets/?page=1')
 
   const { planets, filteredPlanets, allPlanetsInfo, persons, filteredPersons, allPersonsInfo, fetchPlanetData, fetchPersonData } = props
 
+  function getPlanetPage(page) {
+    console.log(planetPage)
+    setPlanetPage(`https://swapi.co/api/planets/?page=${page}`)
+  }
 
   useEffect(() => {
-    fetchPlanetData('https://swapi.co/api/planets/?page=1')
-    fetchPlanetData('https://swapi.co/api/planets/?page=2')
-    // fetchPlanetData('https://swapi.co/api/planets/?page=3')
+    fetchPlanetData(planetPage)
+
     fetchPersonData('https://swapi.co/api/people/')
 
 
-  }, [fetchPlanetData, fetchPersonData]);
+  }, [planetPage, fetchPlanetData, fetchPersonData]);
   return (
 
     <BrowserRouter>
@@ -37,7 +40,7 @@ function App(props) {
             <Home />
           </Route>
           <Route path='/planets' exact >
-            <Planets planets={planets.planets} filteredPlanets={filteredPlanets.filteredPlanets} allPlanetsInfo={allPlanetsInfo} />
+            <Planets planets={planets.planets} filteredPlanets={filteredPlanets.filteredPlanets} allPlanetsInfo={allPlanetsInfo} getPlanetPage={getPlanetPage} />
           </Route>
           <Route path='/persons' >
             <Persons persons={persons.persons} filteredPersons={filteredPersons.filteredPersons} allPersonsInfo={allPersonsInfo} />

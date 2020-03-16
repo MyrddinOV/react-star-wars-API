@@ -6,7 +6,7 @@ import MorePlanetInfo from './MorePlanetInfo';
 import Preloader from '../Preloader';
 
 
-const Planets = ({ planets, filteredPlanets, allPlanetsInfo }) => {
+const Planets = ({ planets, filteredPlanets, allPlanetsInfo, getPlanetPage }) => {
 
     const [filteredData, setFilteredData] = useState([])
     const [oneOfPlanet, setOneOfPlanet] = useState([])
@@ -29,7 +29,7 @@ const Planets = ({ planets, filteredPlanets, allPlanetsInfo }) => {
     }
 
 
-
+    let pages = [1, 2, 3, 4, 5, 6, 7]
 
     let containerStyle = allPlanetsInfo.loading ? 'bg-white' : 'bg-black'
 
@@ -38,7 +38,7 @@ const Planets = ({ planets, filteredPlanets, allPlanetsInfo }) => {
         <Preloader loading={allPlanetsInfo.loading}>
             <div className={containerStyle}>
                 <FindPlanet setFilteredData={setFilteredData} planets={planets} filteredPlanets={filteredPlanets} allPlanetsInfo={allPlanetsInfo}></FindPlanet>
-                <div >
+                <div className='container'>
                     {filteredData.map((planet) => (
 
                         <div onClick={() => saveOneOfPlanet(planet)} title={planet.name} className='planet-container' key={planet.name}>
@@ -47,7 +47,10 @@ const Planets = ({ planets, filteredPlanets, allPlanetsInfo }) => {
                         </div>
                     ))}
                 </div>
-
+                        
+                        {pages.map(page => (
+                            <span key={page} onClick={() => getPlanetPage(page)}>{page}</span>
+                        ))}
                 <MorePlanetInfo planet={oneOfPlanet} planetCardIsOpen={planetCardIsOpen} closePlanetCard={closePlanetCard} residents={residents} />
 
             </div>
