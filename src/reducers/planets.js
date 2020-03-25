@@ -5,7 +5,7 @@ let initialState = {
     planets: [],
     filteredPlanets: [],
     loading: false,
-    errors: null,
+    error: null,
 }
 
 

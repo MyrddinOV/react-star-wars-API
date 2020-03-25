@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
 import './App.css';
-
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Home } from '../Components/Home';
 import { NavBar } from '../Components/NavBar';
@@ -13,14 +11,24 @@ import { getPersons } from '../actions/PersonActions';
 
 
 
+
+
 function App(props) {
   const [planetPage, setPlanetPage] = useState('https://swapi.co/api/planets/?page=1')
+  const [activePage, setActivePage] = useState(1)
 
   const { planets, filteredPlanets, allPlanetsInfo, persons, filteredPersons, allPersonsInfo, fetchPlanetData, fetchPersonData } = props
 
+
+
+
   function getPlanetPage(page) {
-    console.log(planetPage)
+
     setPlanetPage(`https://swapi.co/api/planets/?page=${page}`)
+    setActivePage(page)
+    console.log(page)
+
+
   }
 
   useEffect(() => {
@@ -34,14 +42,22 @@ function App(props) {
 
     <BrowserRouter>
       <div className="App">
-        <NavBar />
+        <NavBar activePage={activePage} />
         <Switch>
           <Route path='/' exact >
             <Home />
           </Route>
-          <Route path='/planets' exact >
-            <Planets planets={planets.planets} filteredPlanets={filteredPlanets.filteredPlanets} allPlanetsInfo={allPlanetsInfo} getPlanetPage={getPlanetPage} />
+          <Route path={`/planets/page/:activePage`} >
+            <Planets
+              planets={planets.planets}
+              filteredPlanets={filteredPlanets.filteredPlanets}
+              allPlanetsInfo={allPlanetsInfo}
+              getPlanetPage={getPlanetPage}
+              activePage={activePage}
+            />
           </Route>
+
+
           <Route path='/persons' >
             <Persons persons={persons.persons} filteredPersons={filteredPersons.filteredPersons} allPersonsInfo={allPersonsInfo} />
           </Route>

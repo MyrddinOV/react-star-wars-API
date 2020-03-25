@@ -78,3 +78,21 @@
 .bg-white {
   background-color: #fff;
 }
+
+.page {
+  margin-left: 15px;
+  cursor: pointer;
+
+}
+
+.page:hover {
+  color: yellow;
+}
+
+.active-page {
+  color: yellow;
+}
+.pages-link {
+  display: inline-block;
+  padding-top: 40px;
+}
